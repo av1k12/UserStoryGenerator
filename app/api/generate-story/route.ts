@@ -17,10 +17,15 @@ interface StoryResponse {
   suggestions?: string[]
 }
 
-// Initialize OpenAI client
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
+// Initialize OpenAI client conditionally
+const getOpenAI = () => {
+  if (!process.env.OPENAI_API_KEY) {
+    return null;
+  }
+  return new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -78,6 +83,11 @@ export async function PATCH(request: NextRequest) {
 
     const userPrompt = `Original Story: "${originalStory}"\n\nTweak Instructions: ${tweakInstructions}\n\nPlease revise the user story as requested.`;
 
+    const openai = getOpenAI();
+    if (!openai) {
+      throw new Error('OpenAI client not available');
+    }
+    
     try {
       const completion = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
@@ -147,6 +157,11 @@ Respond in JSON format:
 
 Please generate a user story based on this input.`
 
+  const openai = getOpenAI();
+  if (!openai) {
+    throw new Error('OpenAI client not available');
+  }
+  
   try {
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",

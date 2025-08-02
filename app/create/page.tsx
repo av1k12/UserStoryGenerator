@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import { Send, Copy, Download, RefreshCw, AlertCircle } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 
@@ -35,7 +35,7 @@ interface GeneratedStoryWithTweaks extends GeneratedStory {
   tweakHistory: TweakHistoryItem[];
 }
 
-export default function CreatePage() {
+function CreatePageContent() {
   const searchParams = useSearchParams()
   const teamId = searchParams.get('team')
   
@@ -418,5 +418,20 @@ export default function CreatePage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function CreatePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Loading...</h1>
+          <p className="text-gray-600">Please wait while we load your team configuration.</p>
+        </div>
+      </div>
+    }>
+      <CreatePageContent />
+    </Suspense>
   )
 } 
