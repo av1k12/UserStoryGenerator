@@ -46,6 +46,15 @@ function readFullTeamContext(teamId?: string): string {
   return '';
 }
 
+function ensureString(value: unknown): string {
+  if (typeof value === 'string') return value
+  try {
+    return JSON.stringify(value, null, 2)
+  } catch {
+    return String(value)
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body: StoryRequest = await request.json()
@@ -65,22 +74,22 @@ export async function POST(request: NextRequest) {
       const saved = teamId ? saveNewStory({
         teamId,
         originalInput: userInput,
-        formattedStory: result.formattedStory,
+        formattedStory: ensureString(result.formattedStory),
         suggestions: result.suggestions ?? [],
         teamConfig: toStoredConfig(teamConfig, teamId)
       }) : null
-      return NextResponse.json({ ...result, storyId: saved?.id })
+      return NextResponse.json({ ...result, formattedStory: ensureString(result.formattedStory), storyId: saved?.id })
     }
 
     const result = await generateStoryWithChatGPT(userInput, teamConfig, fullContext)
     const saved = teamId ? saveNewStory({
       teamId,
       originalInput: userInput,
-      formattedStory: result.formattedStory,
+      formattedStory: ensureString(result.formattedStory),
       suggestions: result.suggestions ?? [],
       teamConfig: toStoredConfig(teamConfig, teamId)
     }) : null
-    return NextResponse.json({ ...result, storyId: saved?.id })
+    return NextResponse.json({ ...result, formattedStory: ensureString(result.formattedStory), storyId: saved?.id })
   } catch (error) {
     console.error('Error generating story:', error)
     return NextResponse.json(
@@ -116,12 +125,12 @@ export async function PATCH(request: NextRequest) {
       if (storyId) {
         addTweakToStory({
           storyId,
-          formattedStory: response.formattedStory,
+          formattedStory: ensureString(response.formattedStory),
           suggestions: response.suggestions ?? [],
           tweakInstructions,
         });
       }
-      return NextResponse.json(response);
+      return NextResponse.json({ ...response, formattedStory: ensureString(response.formattedStory) });
     }
 
     const systemPrompt = `You are an expert SAFe agile coach and user story writer. Your task is to help teams refine and improve user stories.\n\nTeam Context:\n- Team Name: ${teamConfig.teamName}\n- Mission: ${teamConfig.mission}\n- Project: ${teamConfig.projectDescription}\n- Team Roles: ${teamConfig.teamRoles}\n\nUser Story Template: ${teamConfig.userStoryTemplate}\n\nTeam Story Knowledge Base (use as background only; do not repeat verbatim):\n${fullContext}\n\nInstructions:\n1. Take the provided user story and the user's tweak instructions.\n2. Revise the story according to the instructions, keeping it well-structured and clear.\n3. Provide 1-2 suggestions for further improvement if applicable.\n\nRespond in JSON format:\n{\n  "formattedStory": "the revised user story",\n  "suggestions": ["suggestion 1", "suggestion 2"]\n}`;
@@ -150,7 +159,7 @@ export async function PATCH(request: NextRequest) {
       try {
         const parsed = JSON.parse(response);
         const payload = {
-          formattedStory: parsed.formattedStory || '',
+          formattedStory: ensureString(parsed.formattedStory || ''),
           suggestions: parsed.suggestions || []
         };
         if (storyId) {
@@ -163,7 +172,7 @@ export async function PATCH(request: NextRequest) {
         }
         return NextResponse.json(payload);
       } catch (parseError) {
-        const payload = { formattedStory: response, suggestions: [] as string[] };
+        const payload = { formattedStory: ensureString(response), suggestions: [] as string[] };
         if (storyId) {
           addTweakToStory({
             storyId,
@@ -183,12 +192,12 @@ export async function PATCH(request: NextRequest) {
       if (storyId) {
         addTweakToStory({
           storyId,
-          formattedStory: payload.formattedStory,
+          formattedStory: ensureString(payload.formattedStory),
           suggestions: payload.suggestions,
           tweakInstructions,
         });
       }
-      return NextResponse.json(payload);
+      return NextResponse.json({ ...payload, formattedStory: ensureString(payload.formattedStory) });
     }
   } catch (error) {
     console.error('Error tweaking story:', error);
@@ -240,17 +249,19 @@ async function generateStoryWithChatGPT(input: string, config: any, fullContext:
     try {
       const parsed = JSON.parse(response)
       return {
-        formattedStory: parsed.formattedStory || '',
+        formattedStory: ensureString(parsed.formattedStory || ''),
         suggestions: parsed.suggestions || []
       }
     } catch (parseError) {
       // If JSON parsing fails, extract content manually
-      return extractContentFromText(response, config)
+      const extracted = extractContentFromText(response, config)
+      return { ...extracted, formattedStory: ensureString(extracted.formattedStory) }
     }
   } catch (error) {
     console.error('ChatGPT API error:', error)
     // Fallback to text processing
-    return await processUserInputFallback(input, config, fullContext)
+    const fallback = await processUserInputFallback(input, config, fullContext)
+    return { ...fallback, formattedStory: ensureString(fallback.formattedStory) }
   }
 }
 
