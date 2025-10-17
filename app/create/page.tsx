@@ -20,6 +20,7 @@ interface GeneratedStory {
   formattedStory: string
   suggestions: string[]
   createdAt: string
+  storyId?: string
 }
 
 // Add tweak state and history types
@@ -47,10 +48,12 @@ function CreatePageContent() {
   const [isTweaking, setIsTweaking] = useState<{ [storyId: string]: boolean }>({});
   const [isCopied, setIsCopied] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [isContextOpen, setIsContextOpen] = useState(false)
+  const [contextText, setContextText] = useState<string>('')
+  const [isLoadingContext, setIsLoadingContext] = useState(false)
 
   useEffect(() => {
     if (teamId) {
-      // In a real app, this would fetch from a database
       const savedConfig = localStorage.getItem('teamConfig')
       if (savedConfig) {
         const config = JSON.parse(savedConfig)
@@ -60,6 +63,21 @@ function CreatePageContent() {
       }
     }
   }, [teamId])
+
+  const openTeamContext = async () => {
+    if (!teamId) return
+    setIsContextOpen(true)
+    setIsLoadingContext(true)
+    try {
+      const res = await fetch(`/api/team-context?team=${encodeURIComponent(teamId)}`)
+      const data = await res.json()
+      setContextText(data.contextText || 'No context available yet.')
+    } catch (e) {
+      setContextText('Failed to load team knowledge. Please try again later.')
+    } finally {
+      setIsLoadingContext(false)
+    }
+  }
 
   const generateStory = async () => {
     if (!userInput.trim() || !teamConfig) return
@@ -75,6 +93,7 @@ function CreatePageContent() {
         },
         body: JSON.stringify({
           userInput: userInput.trim(),
+          teamId: teamId ?? undefined,
           teamConfig: {
             teamName: teamConfig.teamName,
             mission: teamConfig.mission,
@@ -97,6 +116,7 @@ function CreatePageContent() {
         formattedStory: result.formattedStory,
         suggestions: result.suggestions || [],
         createdAt: new Date().toISOString(),
+        storyId: result.storyId,
         tweakHistory: []
       }
       
@@ -111,12 +131,12 @@ function CreatePageContent() {
   }
 
   // Tweak handler
-  const handleTweak = async (storyId: string) => {
-    const story = generatedStories.find(s => s.id === storyId)
+  const handleTweak = async (storyIdLocal: string) => {
+    const story = generatedStories.find(s => s.id === storyIdLocal)
     if (!story || !teamConfig) return
-    const tweakInstructions = tweakInputs[storyId]?.trim()
+    const tweakInstructions = tweakInputs[storyIdLocal]?.trim()
     if (!tweakInstructions) return
-    setIsTweaking(prev => ({ ...prev, [storyId]: true }))
+    setIsTweaking(prev => ({ ...prev, [storyIdLocal]: true }))
     setError(null)
     try {
       const response = await fetch('/api/generate-story', {
@@ -125,6 +145,8 @@ function CreatePageContent() {
         body: JSON.stringify({
           originalStory: story.formattedStory,
           tweakInstructions,
+          teamId: teamId ?? undefined,
+          storyId: story.storyId,
           teamConfig: {
             teamName: teamConfig.teamName,
             mission: teamConfig.mission,
@@ -146,7 +168,7 @@ function CreatePageContent() {
         createdAt: new Date().toISOString()
       }
       setGeneratedStories(prev => prev.map(s =>
-        s.id === storyId
+        s.id === storyIdLocal
           ? {
               ...s,
               formattedStory: result.formattedStory,
@@ -155,12 +177,12 @@ function CreatePageContent() {
             }
           : s
       ))
-      setTweakInputs(prev => ({ ...prev, [storyId]: '' }))
+      setTweakInputs(prev => ({ ...prev, [storyIdLocal]: '' }))
     } catch (error) {
       console.error('Error tweaking story:', error)
       setError('Failed to tweak story. Please try again.')
     } finally {
-      setIsTweaking(prev => ({ ...prev, [storyId]: false }))
+      setIsTweaking(prev => ({ ...prev, [storyIdLocal]: false }))
     }
   }
 
@@ -221,7 +243,10 @@ function CreatePageContent() {
           {/* Story Creation */}
           <div className="lg:col-span-2">
             <div className="card mb-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">Create New Story</h2>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-semibold text-gray-900">Create New Story</h2>
+                <button onClick={openTeamContext} className="btn-secondary">View Team Knowledge</button>
+              </div>
               
               <div className="mb-4">
                 <label htmlFor="userInput" className="block text-sm font-medium text-gray-700 mb-2">
@@ -231,13 +256,19 @@ function CreatePageContent() {
                   id="userInput"
                   value={userInput}
                   onChange={(e) => setUserInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey && userInput.trim() && !isGenerating) {
+                      e.preventDefault()
+                      generateStory()
+                    }
+                  }}
                   className="input-field"
                   rows={3}
                   placeholder="e.g., As a customer, I want to reset my password so I can access my account when I forget it"
                   disabled={isGenerating}
                 />
                 <p className="mt-1 text-sm text-gray-500">
-                  Include your role, what you want to accomplish, and why it's beneficial
+                  Include your role, what you want to accomplish, and why it's beneficial.
                 </p>
               </div>
 
@@ -345,22 +376,63 @@ function CreatePageContent() {
                       </div>
                       {/* Tweak History */}
                       {story.tweakHistory.length > 0 && (
-                        <div className="mt-4">
-                          <p className="text-xs text-gray-500 mb-1">Tweak History:</p>
-                          <ul className="space-y-2">
+                        <div className="mt-6">
+                          <div className="flex items-center mb-3">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                            <h4 className="text-sm font-medium text-gray-700">Edit History</h4>
+                            <span className="ml-2 text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded-full">
+                              {story.tweakHistory.length} {story.tweakHistory.length === 1 ? 'edit' : 'edits'}
+                            </span>
+                          </div>
+                          <div className="space-y-3">
                             {story.tweakHistory.map((tweak, idx) => (
-                              <li key={tweak.id} className="border border-gray-100 rounded p-2 bg-gray-50">
-                                <div className="text-xs text-gray-700 mb-1">Tweak: {tweak.tweakInstructions}</div>
-                                <pre className="text-xs text-gray-900 whitespace-pre-wrap mb-1">{tweak.formattedStory}</pre>
+                              <div key={tweak.id} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                                {/* Edit Header */}
+                                <div className="flex items-start justify-between mb-3">
+                                  <div className="flex items-center">
+                                    <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                      <span className="text-xs font-medium text-blue-600">{idx + 1}</span>
+                                    </div>
+                                    <div>
+                                      <p className="text-sm font-medium text-gray-900">Edit #{idx + 1}</p>
+                                      <p className="text-xs text-gray-500">{new Date(tweak.createdAt).toLocaleString()}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                {/* Tweak Instructions */}
+                                <div className="mb-3">
+                                  <p className="text-xs font-medium text-gray-700 mb-1">Request:</p>
+                                  <p className="text-sm text-gray-900 bg-blue-50 px-3 py-2 rounded-md border-l-4 border-blue-200">
+                                    "{tweak.tweakInstructions}"
+                                  </p>
+                                </div>
+                                
+                                {/* Updated Story */}
+                                <div className="mb-3">
+                                  <p className="text-xs font-medium text-gray-700 mb-2">Updated Story:</p>
+                                  <div className="bg-gray-50 px-3 py-2 rounded-md border">
+                                    <p className="text-sm text-gray-900 leading-relaxed">{tweak.formattedStory}</p>
+                                  </div>
+                                </div>
+                                
+                                {/* Suggestions */}
                                 {tweak.suggestions.length > 0 && (
-                                  <ul className="text-xs text-gray-600 list-disc ml-4">
-                                    {tweak.suggestions.map((s, i) => <li key={i}>{s}</li>)}
-                                  </ul>
+                                  <div>
+                                    <p className="text-xs font-medium text-gray-700 mb-2">AI Suggestions:</p>
+                                    <ul className="space-y-1">
+                                      {tweak.suggestions.map((suggestion, i) => (
+                                        <li key={i} className="flex items-start">
+                                          <span className="text-green-500 mr-2 mt-1">•</span>
+                                          <span className="text-sm text-gray-700">{suggestion}</span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </div>
                                 )}
-                                <div className="text-2xs text-gray-400 mt-1">{new Date(tweak.createdAt).toLocaleString()}</div>
-                              </li>
+                              </div>
                             ))}
-                          </ul>
+                          </div>
                         </div>
                       )}
                     </div>
@@ -417,6 +489,29 @@ function CreatePageContent() {
           </div>
         </div>
       </div>
+
+      {/* Modal */}
+      {isContextOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded-lg shadow-lg w-full max-w-3xl mx-4">
+            <div className="flex items-center justify-between p-4 border-b">
+              <h3 className="text-lg font-semibold text-gray-900">Team Knowledge</h3>
+              <button onClick={() => setIsContextOpen(false)} className="text-gray-500 hover:text-gray-700">✕</button>
+            </div>
+            <div className="p-4">
+              {isLoadingContext ? (
+                <div className="text-sm text-gray-500">Loading...
+                </div>
+              ) : (
+                <pre className="whitespace-pre-wrap text-sm text-gray-800 max-h-[60vh] overflow-y-auto bg-gray-50 p-3 rounded border">{contextText || 'No context available yet.'}</pre>
+              )}
+            </div>
+            <div className="flex justify-end p-4 border-t">
+              <button onClick={() => setIsContextOpen(false)} className="btn-secondary">Close</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

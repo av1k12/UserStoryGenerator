@@ -1,6 +1,16 @@
-# SAFe User Story Generator
+# SAFeScript
 
-An AI-powered web application designed to help SAFe agile teams create user stories efficiently using ChatGPT. The application allows agilists to set up team configurations and templates, then share simple links with team members for easy story creation.
+This application helps teams generate better user stories with AI.
+
+## Per-team Learning (Local Only)
+
+- Generated stories and their tweaks are now saved per team to `.data/team-stories.json` in the project root when running locally.
+- When a team generates new stories, the system includes the team's recent stories as background context to improve consistency.
+- Tweaks to a story are saved as part of that story's history.
+
+Notes:
+- This local JSON store is suitable for development. For production, use a managed database (e.g., Postgres, MongoDB, or Supabase) and replace the storage utility in `lib/teamStorage.ts`.
+- Context is used as background only and is not sent across teams.
 
 ## Features
 

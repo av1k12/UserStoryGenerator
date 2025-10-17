@@ -20,9 +20,6 @@ export default function HomePage() {
               <Link href="/setup" className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
                 Setup
               </Link>
-              <Link href="/create" className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
-                Create Story
-              </Link>
             </nav>
           </div>
         </div>
@@ -44,11 +41,6 @@ export default function HomePage() {
               <Link href="/setup" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 md:py-4 md:text-lg md:px-10">
                 Get Started
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </div>
-            <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-              <Link href="/create" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
-                Create Story
               </Link>
             </div>
           </div>

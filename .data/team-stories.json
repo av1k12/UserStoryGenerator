@@ -1,0 +1,502 @@
+{
+  "stories": [
+    {
+      "id": "1754656873650-0vzkfm7cdry",
+      "teamId": "177b38c3-3585-4822-b7bb-8d4279b27a05",
+      "originalInput": "As a Data Analyst I want to build a powerbi report for users to see which data is the most used.",
+      "formattedStory": "}",
+      "suggestions": [],
+      "createdAt": "2025-08-08T12:41:13.650Z",
+      "teamConfigSnapshot": {
+        "id": "177b38c3-3585-4822-b7bb-8d4279b27a05",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754656883988-18jjz47pq3z",
+      "teamId": "177b38c3-3585-4822-b7bb-8d4279b27a05",
+      "originalInput": "As a Data Analyst I want to build a powerbi report for users to see which data is the most used.",
+      "formattedStory": "Title: PowerBI Report for Data Usage Analysis\n\nUser Story:\nAs a Data Analyst,\nI want to build a PowerBI report that shows users the most frequently used data,\nSo that they can make informed decisions based on data popularity.\n\nObjective:\nTo provide users with insights into the most utilized data.\n\nAcceptance Criteria:\n1. Given a dataset of user interactions,\n   When the PowerBI report is generated,\n   Then it should display the data usage frequency in a clear visual format.\n\nRisk:\nPotential risk of inaccuracies in data analysis leading to incorrect insights.\n\nDependencies:\nDependent on access to the data source for real-time data updates.",
+      "suggestions": [
+        "Consider adding more specific details about the dataset or data sources for better clarity.",
+        "Include a section on how users can interact with the PowerBI report to explore data usage further."
+      ],
+      "createdAt": "2025-08-08T12:41:23.988Z",
+      "teamConfigSnapshot": {
+        "id": "177b38c3-3585-4822-b7bb-8d4279b27a05",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754657076755-65ly4nsejo7",
+      "teamId": "177b38c3-3585-4822-b7bb-8d4279b27a05",
+      "originalInput": "As a data analyst i want to make the powerbi report better.",
+      "formattedStory": "Title: Enhance PowerBI Report for Better Data Analysis\n\nUser Story:\nAs a Data Analyst,\nI want to enhance the PowerBI report to improve data analysis capabilities,\nSo that users can derive more insightful conclusions from the data.\n\nObjective:\nTo upgrade the PowerBI report for more effective data analysis.\n\nAcceptance Criteria:\n1. Given the existing PowerBI report,\n   When enhancements are implemented,\n   Then the report should provide more advanced data visualization and analytical features.\n\nRisk:\nRisk of potential disruptions during the enhancement process affecting report availability.\n\nDependencies:\nDependent on access to the PowerBI tool and collaboration with users for feedback on improvements.",
+      "suggestions": [
+        "Consider specifying what aspects of the PowerBI report need improvement for better clarity.",
+        "Include examples of the types of enhancements desired to guide the development process."
+      ],
+      "createdAt": "2025-08-08T12:44:36.755Z",
+      "teamConfigSnapshot": {
+        "id": "177b38c3-3585-4822-b7bb-8d4279b27a05",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754657151501-6aetxdouphm",
+      "teamId": "177b38c3-3585-4822-b7bb-8d4279b27a05",
+      "originalInput": "As a data analyst i want to make the powerbi report that i mentioned earlier better. the data one.",
+      "formattedStory": "Title: Enhance PowerBI Report for Better Data Analysis (Improved Version)\n\nUser Story:\nAs a Data Analyst,\nI want to enhance the PowerBI report mentioned earlier to improve data analysis capabilities specifically focusing on the data aspect,\nSo that users can derive more insightful conclusions from the data.\n\nObjective:\nTo upgrade the PowerBI report for more effective data analysis with a specific focus on data-related insights.\n\nAcceptance Criteria:\n1. Given the previously mentioned PowerBI report,\n   When enhancements are implemented with a specific focus on data analysis,\n   Then the report should provide more advanced data visualization and analytical features tailored to the data aspect.\n\nRisk:\nRisk of potential disruptions during the enhancement process affecting report availability and data accuracy.\n\nDependencies:\nDependent on access to the PowerBI tool and collaboration with users for feedback on data-specific improvements.\nSuggestions:\n- Clearly define the specific data-related enhancements required for the PowerBI report.\n- Involve users in defining the data aspects they find most valuable for analysis and visualization.",
+      "suggestions": [
+        "Clearly define the specific data-related enhancements required for the PowerBI report.",
+        "Involve users in defining the data aspects they find most valuable for analysis and visualization."
+      ],
+      "createdAt": "2025-08-08T12:45:51.501Z",
+      "teamConfigSnapshot": {
+        "id": "177b38c3-3585-4822-b7bb-8d4279b27a05",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754657156620-zpthbalcblo",
+      "teamId": "177b38c3-3585-4822-b7bb-8d4279b27a05",
+      "originalInput": "As a data analyst i want to make the powerbi report that i mentioned earlier better. the data one.",
+      "formattedStory": "Title: Enhance PowerBI Report for Better Data Analysis (Improved Version)\n\nUser Story:\nAs a Data Analyst,\nI want to enhance the PowerBI report mentioned earlier to improve data analysis capabilities specifically focusing on the data aspect,\nSo that users can derive more insightful conclusions from the data.\n\nObjective:\nTo upgrade the PowerBI report for more effective data analysis with a specific focus on data-related insights.\n\nAcceptance Criteria:\n1. Given the previously mentioned PowerBI report,\n   When enhancements are implemented with a specific focus on data analysis,\n   Then the report should provide more advanced data visualization and analytical features tailored to the data aspect.\n\nRisk:\nRisk of potential disruptions during the enhancement process affecting report availability and data accuracy.\n\nDependencies:\nDependent on access to the PowerBI tool and collaboration with users for feedback on data-specific improvements.",
+      "suggestions": [
+        "Clearly define the specific data-related enhancements required for the PowerBI report.",
+        "Involve users in defining the data aspects they find most valuable for analysis and visualization."
+      ],
+      "createdAt": "2025-08-08T12:45:56.620Z",
+      "teamConfigSnapshot": {
+        "id": "177b38c3-3585-4822-b7bb-8d4279b27a05",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754657451636-xz2xmzorwi",
+      "teamId": "177b38c3-3585-4822-b7bb-8d4279b27a05",
+      "originalInput": "As a Data Analyst I want to build a powerbi report for users to see which queries are the most used.",
+      "formattedStory": "Title: PowerBI Report for Query Usage Analysis\n\nUser Story:\nAs a Data Analyst,\nI want to build a PowerBI report that displays the most frequently used queries for users,\nSo that they can analyze query usage patterns effectively.\n\nObjective:\nTo provide users with insights into the most utilized queries.\n\nAcceptance Criteria:\n1. Given a dataset of query interactions,\n   When the PowerBI report is generated,\n   Then it should show the frequency of query usage in a clear visual format.\n\nRisk:\nPotential risk of inaccuracies in query analysis leading to incorrect insights.\n\nDependencies:\nDependent on access to the query data source for real-time updates.",
+      "suggestions": [
+        "Consider specifying what type of queries or data sources will be included in the report for clarity.",
+        "Include a section on how users can interact with the PowerBI report to explore query usage further."
+      ],
+      "createdAt": "2025-08-08T12:50:51.637Z",
+      "teamConfigSnapshot": {
+        "id": "177b38c3-3585-4822-b7bb-8d4279b27a05",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754657551140-h1l16o036kv",
+      "teamId": "177b38c3-3585-4822-b7bb-8d4279b27a05",
+      "originalInput": "As an intern I want to help the data analyst with all of their powerbi reports",
+      "formattedStory": "Title: Support Data Analyst in PowerBI Report Creation\n\nUser Story:\nAs an Intern,\nI want to assist the Data Analyst in creating PowerBI reports,\nSo that I can contribute to the team's data analysis efforts.\n\nObjective:\nTo collaborate with the Data Analyst in producing insightful PowerBI reports.\n\nAcceptance Criteria:\n1. Given the Data Analyst's requirements for a PowerBI report,\n   When I provide support in report creation,\n   Then the report should meet the specified criteria for data analysis.\n\nRisk:\nPotential risk of miscommunication leading to incorrect report creation.\n\nDependencies:\nDependent on clear communication with the Data Analyst regarding report expectations and data sources.",
+      "suggestions": [
+        "Specify the level of involvement or tasks you will perform to assist the Data Analyst for better clarity.",
+        "Include examples of the types of PowerBI reports or data analysis tasks you will be helping with to align expectations."
+      ],
+      "createdAt": "2025-08-08T12:52:31.140Z",
+      "teamConfigSnapshot": {
+        "id": "177b38c3-3585-4822-b7bb-8d4279b27a05",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754657995614-s5586g184h",
+      "teamId": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+      "originalInput": "As a Data Analyst I want to build a powerbi report for users to see which data is the most used.",
+      "formattedStory": "User Story: Building PowerBI Report for Data Usage Tracking",
+      "suggestions": [],
+      "createdAt": "2025-08-08T12:59:55.614Z",
+      "teamConfigSnapshot": {
+        "id": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754658007043-m78e3bc2ine",
+      "teamId": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+      "originalInput": "As a Data Analyst I want to build a powerbi report for users to see which data is the most used.",
+      "formattedStory": "Title: Building PowerBI Report for Data Usage Tracking\n\nUser Story:\nAs a Data Analyst,\nI want to build a PowerBI report for users to see which data is the most used,\nSo that we can identify data usage patterns and make informed decisions.",
+      "suggestions": [
+        "Consider adding a specific objective to highlight the end goal more clearly.",
+        "Include more details in the acceptance criteria to ensure a shared understanding of the expected outcome."
+      ],
+      "createdAt": "2025-08-08T13:00:07.043Z",
+      "teamConfigSnapshot": {
+        "id": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754658016584-ltffg0jr08m",
+      "teamId": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+      "originalInput": "As a Data Analyst I want to build a powerbi report for users to see which data is the most used.",
+      "formattedStory": "User Story:\nAs a Data Analyst,\nI want to build a PowerBI report for users to see which data is the most used,\nSo that we can identify data usage patterns and make informed decisions.\n\nObjective:\nTo analyze data consumption patterns and facilitate data-driven decision-making.\n\nAcceptance Criteria:\n1. Given a dataset of user interactions,\n   When the PowerBI report is generated,\n   Then the report displays the most frequently accessed data.\n\nRisk:\nPotential risk of inaccurate data representation due to data processing errors.\n\nDependencies:\nDependent on access to the relevant data sources for accurate reporting.",
+      "suggestions": [
+        "Consider adding more specific details in the acceptance criteria for clarity and testability.",
+        "Include potential risks related to data accuracy or visualization challenges."
+      ],
+      "createdAt": "2025-08-08T13:00:16.584Z",
+      "teamConfigSnapshot": {
+        "id": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754658085935-0jci3825x0hh",
+      "teamId": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+      "originalInput": "As an intern I want to help the data analyst with his powerbi report.",
+      "formattedStory": "User Story:\nAs an Intern,\nI want to assist the Data Analyst with building a PowerBI report,\nSo that I can learn and contribute to the data analysis process.",
+      "suggestions": [
+        "Consider adding a specific objective to clarify the desired learning outcome or contribution.",
+        "Include detailed acceptance criteria outlining the tasks or areas where the intern will provide assistance."
+      ],
+      "createdAt": "2025-08-08T13:01:25.935Z",
+      "teamConfigSnapshot": {
+        "id": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754658191733-0nis4r9bp7s",
+      "teamId": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+      "originalInput": "As an intern I have to complete the powerbi report over data analysis that was originally tasked to the data analyst.",
+      "formattedStory": "Title: Completing PowerBI Report on Data Analysis",
+      "suggestions": [],
+      "createdAt": "2025-08-08T13:03:11.733Z",
+      "teamConfigSnapshot": {
+        "id": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754658203996-xbldjk2ryj",
+      "teamId": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+      "originalInput": "As an intern I have to complete the powerbi report over data analysis that was originally tasked to the data analyst.",
+      "formattedStory": "Title: Completing PowerBI Report on Data Analysis\n\nUser Story:\nAs an Intern,\nI want to complete the PowerBI report on data analysis originally tasked to the Data Analyst,\nSo that I can demonstrate my skills and contribute to the team's deliverables.\n\nObjective:\nTo finalize the PowerBI report on data analysis efficiently and accurately.\n\nAcceptance Criteria:\n1. Given the partially completed PowerBI report,\n   When I work on it,\n   Then I ensure all data analysis components are accurately represented.\n\nRisk:\nPotential risk of misinterpretation of the original analysis intent.\n\nDependencies:\nDependent on access to the existing report structure and any additional data sources.\n",
+      "suggestions": [
+        "Consider specifying the scope of the data analysis to be completed for better clarity.",
+        "Include details on how the intern will collaborate with the Data Analyst, if needed."
+      ],
+      "createdAt": "2025-08-08T13:03:23.996Z",
+      "teamConfigSnapshot": {
+        "id": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754658416634-554d5nflg0g",
+      "teamId": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+      "originalInput": "As a data analyst i want to set up dataiku to ingest files.",
+      "formattedStory": "User Story: Setting Up Dataiku for File Ingestion",
+      "suggestions": [],
+      "createdAt": "2025-08-08T13:06:56.634Z",
+      "teamConfigSnapshot": {
+        "id": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754658422178-95xvzpi1ojn",
+      "teamId": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+      "originalInput": "As a data analyst i want to set up dataiku to ingest files.",
+      "formattedStory": "User Story: Setting Up Dataiku for File Ingestion\n\nAs a Data Analyst,\nI want to set up Dataiku to ingest files,\nSo that we can efficiently process and analyze incoming data.",
+      "suggestions": [
+        "Consider adding a specific objective to highlight the purpose of setting up Dataiku for file ingestion.",
+        "Include more details in the acceptance criteria to ensure clarity on the expected setup process."
+      ],
+      "createdAt": "2025-08-08T13:07:02.178Z",
+      "teamConfigSnapshot": {
+        "id": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754658432518-s79aytt2tk",
+      "teamId": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+      "originalInput": "As a data analyst i want to set up dataiku to ingest files.",
+      "formattedStory": "User Story: Setting Up Dataiku for File Ingestion\n\nAs a Data Analyst,\nI want to set up Dataiku to ingest files,\nSo that we can efficiently process and analyze incoming data.\n\nObjective:\nTo streamline the file ingestion process for efficient data processing.\n\nAcceptance Criteria:\n1. Given access to Dataiku configuration settings,\n   When the file ingestion setup is completed,\n   Then Dataiku can successfully ingest files from specified sources.\n\nRisk:\nPotential risk of misconfiguration leading to data ingestion errors.\n\nDependencies:\nDependent on the availability of relevant file sources and access to Dataiku setup permissions.",
+      "suggestions": [
+        "Consider adding more details in the acceptance criteria to specify how the setup will be tested for success.",
+        "Include information on potential training or documentation needs for users interacting with Dataiku for file ingestion."
+      ],
+      "createdAt": "2025-08-08T13:07:12.518Z",
+      "teamConfigSnapshot": {
+        "id": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754658476040-mllgadntu7s",
+      "teamId": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+      "originalInput": "As a data analyst i want to ingest files.",
+      "formattedStory": "User Story: Ingesting Files for Data Analysis\n\nAs a Data Analyst,\nI want to ingest files,\nSo that I can efficiently analyze the data.",
+      "suggestions": [
+        "Consider adding a specific objective to highlight the purpose of file ingestion for data analysis."
+      ],
+      "createdAt": "2025-08-08T13:07:56.040Z",
+      "teamConfigSnapshot": {
+        "id": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754658484321-isbml3oifeq",
+      "teamId": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+      "originalInput": "As a data analyst i want to set up dataiku to ingest files.",
+      "formattedStory": "User Story: Setting Up Dataiku for File Ingestion\n\nAs a Data Analyst,\nI want to set up Dataiku to ingest files,\nSo that we can efficiently process and analyze incoming data.\n\nObjective:\nTo streamline the file ingestion process for efficient data processing.\n\nAcceptance Criteria:\n1. Given access to Dataiku configuration settings,\n   When the file ingestion setup is completed,\n   Then Dataiku can successfully ingest files from specified sources.\n\nRisk:\nPotential risk of misconfiguration leading to data ingestion errors.\n\nDependencies:\nDependent on the availability of relevant file sources and access to Dataiku setup permissions.",
+      "suggestions": [
+        "Consider adding more details in the acceptance criteria to specify how the setup will be tested for success.",
+        "Include information on potential training or documentation needs for users interacting with Dataiku for file ingestion."
+      ],
+      "createdAt": "2025-08-08T13:08:04.321Z",
+      "teamConfigSnapshot": {
+        "id": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754658508140-u4n3n3pfwh",
+      "teamId": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+      "originalInput": "As a data analyst i want to ingest files.",
+      "formattedStory": "User Story: Ingesting Files for Data Analysis\n\nAs a Data Analyst,\nI want to ingest files,\nSo that I can efficiently analyze the data.\n\nObjective:\nTo streamline the file ingestion process for efficient data analysis.",
+      "suggestions": [
+        "Consider adding a specific objective to highlight the purpose of file ingestion for data analysis."
+      ],
+      "createdAt": "2025-08-08T13:08:28.140Z",
+      "teamConfigSnapshot": {
+        "id": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754658518534-vlqiegpnw7",
+      "teamId": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+      "originalInput": "As a data analyst i want to ingest files.\\",
+      "formattedStory": "User Story:\nAs a Data Analyst,\nI want to ingest files,\nSo that I can efficiently analyze the data.\n\nObjective:\nTo streamline the file ingestion process for efficient data analysis.",
+      "suggestions": [
+        "Consider adding a specific objective to highlight the purpose of file ingestion for data analysis."
+      ],
+      "createdAt": "2025-08-08T13:08:38.534Z",
+      "teamConfigSnapshot": {
+        "id": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754658522868-5i1ip4gm825",
+      "teamId": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+      "originalInput": "As a data analyst i want to ingest files.",
+      "formattedStory": "User Story: As a Data Analyst, I want to ingest files, so that I can efficiently analyze the data.",
+      "suggestions": [
+        "Consider adding a specific objective to highlight the purpose of file ingestion for data analysis."
+      ],
+      "createdAt": "2025-08-08T13:08:42.868Z",
+      "teamConfigSnapshot": {
+        "id": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754658531334-r9lxunb2ith",
+      "teamId": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+      "originalInput": "As a data analyst i want to ingest files.",
+      "formattedStory": "User Story: As a Data Analyst, I want to ingest files, so that I can efficiently analyze the data.",
+      "suggestions": [
+        "Consider adding a specific objective to highlight the purpose of file ingestion for data analysis."
+      ],
+      "createdAt": "2025-08-08T13:08:51.334Z",
+      "teamConfigSnapshot": {
+        "id": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754658546899-cwtozu3zbfe",
+      "teamId": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+      "originalInput": "As a data analyst i want to ingest files so i can look at data.",
+      "formattedStory": "User Story: As a Data Analyst, I want to ingest files, so that I can efficiently analyze the data.",
+      "suggestions": [
+        "Consider adding a specific objective to highlight the purpose of file ingestion for data analysis."
+      ],
+      "createdAt": "2025-08-08T13:09:06.899Z",
+      "teamConfigSnapshot": {
+        "id": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754659783317-mx4e4jzxb6",
+      "teamId": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+      "originalInput": "As a intern I want to talk to maher and scott about what we need in the powerbi data consumption report.",
+      "formattedStory": "User Story: As an Intern, I want to discuss with Maher and Scott the requirements for the PowerBI data consumption report, So that we can align on the needed features and functionalities.",
+      "suggestions": [],
+      "createdAt": "2025-08-08T13:29:43.317Z",
+      "teamConfigSnapshot": {
+        "id": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754662298783-949wvyjda2g",
+      "teamId": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+      "originalInput": "As a intern I want to talk to maher and scott about what we need in the powerbi data consumption report so i can begin working on the report.",
+      "formattedStory": "Title: Discussing PowerBI Data Consumption Report Requirements with Maher and Scott\n\nUser Story:\nAs an Intern,\nI want to talk to Maher and Scott about the requirements for the PowerBI data consumption report,\nSo that we can align on the needed features and functionalities and I can begin working on the report.\n\nObjective:\nTo clarify the requirements and scope of the PowerBI data consumption report for efficient report creation.\n\nAcceptance Criteria:\n1. Given a meeting scheduled with Maher and Scott,\n   When I discuss the report requirements with them,\n   Then we have a clear understanding of the report features and functionalities to be included.\n\nRisk:\nLack of clear communication leading to misunderstanding of report requirements.\n\nDependencies:\nDependent on the availability of Maher and Scott for the discussion.\n",
+      "suggestions": [
+        "Consider adding specific details about the expected outcome of the discussion for better clarity.",
+        "Include a plan for documenting the discussed requirements to ensure alignment during report creation."
+      ],
+      "createdAt": "2025-08-08T14:11:38.784Z",
+      "teamConfigSnapshot": {
+        "id": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    },
+    {
+      "id": "1754662330643-w5rwcvkho3t",
+      "teamId": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+      "originalInput": "As an intern I want to work on the powerbi data consumption report",
+      "formattedStory": "User Story: As an Intern, I want to work on the PowerBI data consumption report, So that I can contribute to the data visualization process.",
+      "suggestions": [
+        "Consider adding a specific objective to clarify the intern's goal in working on the report."
+      ],
+      "createdAt": "2025-08-08T14:12:10.643Z",
+      "teamConfigSnapshot": {
+        "id": "5f30f0de-381a-4cc5-b799-67e540c9bc79",
+        "teamName": "Commercial Data Consumption ",
+        "mission": "My team is the data consumption team in this project.",
+        "projectDescription": "The project description is a migration from AFS (Automated Financial Systems) Level 3 to AFS Vision.",
+        "userStoryTemplate": "Title: \n\nUser Story:\nAs a [type of user],\nI want [goal or feature],\nSo that [reason or benefit]\n\nObjective:\n[What is the specific goal this story is trying to achieve?]\n\nAcceptance Criteria:\n1. Given [context or starting point],\n   When [action is taken],\n   Then [expected outcome].\n\n2. Given [context],\n   When [action],\n   Then [outcome].\n\nRisk:\n[List any potential risks or concerns, e.g., technical limitations, security risks, timeline issues.]\n\nDependencies:\n[List any dependencies this story has, such as other stories, teams, components, or third-party services.]\n",
+        "teamRoles": "Product Owner, Agilist, Data Analyst, Intern"
+      },
+      "tweakHistory": []
+    }
+  ]
+}

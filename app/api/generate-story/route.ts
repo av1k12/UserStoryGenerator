@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import OpenAI from 'openai'
+import { saveNewStory, addTweakToStory, getRecentStoriesForTeam, TeamConfigStored, getTeamContextFilePath, updateTeamContextFile } from '@/lib/teamStorage'
+import fs from 'fs'
+
+export const runtime = 'nodejs'
 
 interface StoryRequest {
   userInput: string
+  teamId?: string
   teamConfig: {
     teamName: string
     mission: string
@@ -15,6 +20,7 @@ interface StoryRequest {
 interface StoryResponse {
   formattedStory: string
   suggestions?: string[]
+  storyId?: string
 }
 
 // Initialize OpenAI client conditionally
@@ -27,10 +33,23 @@ const getOpenAI = () => {
   });
 }
 
+function readFullTeamContext(teamId?: string): string {
+  if (!teamId) return '';
+  try {
+    // Ensure latest cache exists
+    updateTeamContextFile(teamId);
+    const filePath = getTeamContextFilePath(teamId);
+    if (fs.existsSync(filePath)) {
+      return fs.readFileSync(filePath, 'utf-8');
+    }
+  } catch {}
+  return '';
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body: StoryRequest = await request.json()
-    const { userInput, teamConfig } = body
+    const { userInput, teamConfig, teamId } = body
 
     if (!userInput || !teamConfig) {
       return NextResponse.json(
@@ -39,16 +58,29 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Check if OpenAI API key is available
+    const fullContext = readFullTeamContext(teamId)
+
     if (!process.env.OPENAI_API_KEY) {
-      // Fallback to enhanced text processing if no API key
-      const result = await processUserInputFallback(userInput, teamConfig)
-      return NextResponse.json(result)
+      const result = await processUserInputFallback(userInput, teamConfig, fullContext)
+      const saved = teamId ? saveNewStory({
+        teamId,
+        originalInput: userInput,
+        formattedStory: result.formattedStory,
+        suggestions: result.suggestions ?? [],
+        teamConfig: toStoredConfig(teamConfig, teamId)
+      }) : null
+      return NextResponse.json({ ...result, storyId: saved?.id })
     }
 
-    // Use ChatGPT for story generation
-    const result = await generateStoryWithChatGPT(userInput, teamConfig)
-    return NextResponse.json(result)
+    const result = await generateStoryWithChatGPT(userInput, teamConfig, fullContext)
+    const saved = teamId ? saveNewStory({
+      teamId,
+      originalInput: userInput,
+      formattedStory: result.formattedStory,
+      suggestions: result.suggestions ?? [],
+      teamConfig: toStoredConfig(teamConfig, teamId)
+    }) : null
+    return NextResponse.json({ ...result, storyId: saved?.id })
   } catch (error) {
     console.error('Error generating story:', error)
     return NextResponse.json(
@@ -61,7 +93,13 @@ export async function POST(request: NextRequest) {
 export async function PATCH(request: NextRequest) {
   try {
     const body = await request.json();
-    const { originalStory, tweakInstructions, teamConfig } = body;
+    const { originalStory, tweakInstructions, teamConfig, storyId, teamId } = body as {
+      originalStory: string;
+      tweakInstructions: string;
+      teamConfig: TeamConfigStored;
+      storyId?: string;
+      teamId?: string;
+    };
 
     if (!originalStory || !tweakInstructions || !teamConfig) {
       return NextResponse.json(
@@ -70,16 +108,23 @@ export async function PATCH(request: NextRequest) {
       );
     }
 
+    const fullContext = readFullTeamContext(teamId)
+
     if (!process.env.OPENAI_API_KEY) {
-      // Fallback: just append tweak instructions to the story
-      return NextResponse.json({
-        formattedStory: `${originalStory}\n\n(Tweak: ${tweakInstructions})`,
-        suggestions: ['No OpenAI API key, tweak applied as note.']
-      });
+      const formatted = `${originalStory}\n\n(Tweak: ${tweakInstructions})`;
+      const response = { formattedStory: formatted, suggestions: ['No OpenAI API key, tweak applied as note.'] };
+      if (storyId) {
+        addTweakToStory({
+          storyId,
+          formattedStory: response.formattedStory,
+          suggestions: response.suggestions ?? [],
+          tweakInstructions,
+        });
+      }
+      return NextResponse.json(response);
     }
 
-    // Use ChatGPT for tweaking
-    const systemPrompt = `You are an expert SAFe agile coach and user story writer. Your task is to help teams refine and improve user stories.\n\nTeam Context:\n- Team Name: ${teamConfig.teamName}\n- Mission: ${teamConfig.mission}\n- Project: ${teamConfig.projectDescription}\n- Team Roles: ${teamConfig.teamRoles}\n\nUser Story Template: ${teamConfig.userStoryTemplate}\n\nInstructions:\n1. Take the provided user story and the user's tweak instructions.\n2. Revise the story according to the instructions, keeping it well-structured and clear.\n3. Provide 1-2 suggestions for further improvement if applicable.\n\nRespond in JSON format:\n{\n  "formattedStory": "the revised user story",\n  "suggestions": ["suggestion 1", "suggestion 2"]\n}`;
+    const systemPrompt = `You are an expert SAFe agile coach and user story writer. Your task is to help teams refine and improve user stories.\n\nTeam Context:\n- Team Name: ${teamConfig.teamName}\n- Mission: ${teamConfig.mission}\n- Project: ${teamConfig.projectDescription}\n- Team Roles: ${teamConfig.teamRoles}\n\nUser Story Template: ${teamConfig.userStoryTemplate}\n\nTeam Story Knowledge Base (use as background only; do not repeat verbatim):\n${fullContext}\n\nInstructions:\n1. Take the provided user story and the user's tweak instructions.\n2. Revise the story according to the instructions, keeping it well-structured and clear.\n3. Provide 1-2 suggestions for further improvement if applicable.\n\nRespond in JSON format:\n{\n  "formattedStory": "the revised user story",\n  "suggestions": ["suggestion 1", "suggestion 2"]\n}`;
 
     const userPrompt = `Original Story: "${originalStory}"\n\nTweak Instructions: ${tweakInstructions}\n\nPlease revise the user story as requested.`;
 
@@ -104,23 +149,46 @@ export async function PATCH(request: NextRequest) {
       }
       try {
         const parsed = JSON.parse(response);
-        return NextResponse.json({
+        const payload = {
           formattedStory: parsed.formattedStory || '',
           suggestions: parsed.suggestions || []
-        });
+        };
+        if (storyId) {
+          addTweakToStory({
+            storyId,
+            formattedStory: payload.formattedStory,
+            suggestions: payload.suggestions ?? [],
+            tweakInstructions,
+          });
+        }
+        return NextResponse.json(payload);
       } catch (parseError) {
-        // Fallback: just return the text
-        return NextResponse.json({
-          formattedStory: response,
-          suggestions: []
-        });
+        const payload = { formattedStory: response, suggestions: [] as string[] };
+        if (storyId) {
+          addTweakToStory({
+            storyId,
+            formattedStory: payload.formattedStory,
+            suggestions: payload.suggestions,
+            tweakInstructions,
+          });
+        }
+        return NextResponse.json(payload);
       }
     } catch (error) {
       console.error('ChatGPT API error (tweak):', error);
-      return NextResponse.json({
+      const payload = {
         formattedStory: `${originalStory}\n\n(Tweak failed: ${tweakInstructions})`,
         suggestions: ['AI tweak failed, see error log.']
-      });
+      };
+      if (storyId) {
+        addTweakToStory({
+          storyId,
+          formattedStory: payload.formattedStory,
+          suggestions: payload.suggestions,
+          tweakInstructions,
+        });
+      }
+      return NextResponse.json(payload);
     }
   } catch (error) {
     console.error('Error tweaking story:', error);
@@ -131,31 +199,21 @@ export async function PATCH(request: NextRequest) {
   }
 }
 
-async function generateStoryWithChatGPT(input: string, config: any): Promise<StoryResponse> {
-  const systemPrompt = `You are an expert SAFe agile coach and user story writer. Your task is to help teams create well-structured user stories.
+function toStoredConfig(config: any, teamId: string): TeamConfigStored {
+  return {
+    id: teamId,
+    teamName: config.teamName,
+    mission: config.mission,
+    projectDescription: config.projectDescription,
+    userStoryTemplate: config.userStoryTemplate,
+    teamRoles: config.teamRoles,
+  };
+}
 
-Team Context:
-- Team Name: ${config.teamName}
-- Mission: ${config.mission}
-- Project: ${config.projectDescription}
-- Team Roles: ${config.teamRoles}
+async function generateStoryWithChatGPT(input: string, config: any, fullContext: string): Promise<StoryResponse> {
+  const systemPrompt = `You are an expert SAFe agile coach and user story writer. Your task is to help teams create well-structured user stories.\n\nTeam Context:\n- Team Name: ${config.teamName}\n- Mission: ${config.mission}\n- Project: ${config.projectDescription}\n- Team Roles: ${config.teamRoles}\n\nUser Story Template: ${config.userStoryTemplate}\n\nTeam Story Knowledge Base (use as background only; do not repeat verbatim):\n${fullContext}\n\nInstructions:\n1. Analyze the user's input and extract the role, feature/functionality, and benefit/value\n2. Format the user story using the provided template\n3. Provide 1-2 suggestions for improving the story if applicable\n\nRespond in JSON format:\n{\n  "formattedStory": "the formatted user story",\n  "suggestions": ["suggestion 1", "suggestion 2"]\n}`
 
-User Story Template: ${config.userStoryTemplate}
-
-Instructions:
-1. Analyze the user's input and extract the role, feature/functionality, and benefit/value
-2. Format the user story using the provided template
-3. Provide 1-2 suggestions for improving the story if applicable
-
-Respond in JSON format:
-{
-  "formattedStory": "the formatted user story",
-  "suggestions": ["suggestion 1", "suggestion 2"]
-}`
-
-  const userPrompt = `User Input: "${input}"
-
-Please generate a user story based on this input.`
+  const userPrompt = `User Input: "${input}"\n\nPlease generate a user story based on this input.`
 
   const openai = getOpenAI();
   if (!openai) {
@@ -192,12 +250,11 @@ Please generate a user story based on this input.`
   } catch (error) {
     console.error('ChatGPT API error:', error)
     // Fallback to text processing
-    return await processUserInputFallback(input, config)
+    return await processUserInputFallback(input, config, fullContext)
   }
 }
 
 function extractContentFromText(text: string, config: any): StoryResponse {
-  // Extract user story from ChatGPT response
   const lines = text.split('\n')
   let formattedStory = ''
   let suggestions: string[] = []
@@ -222,12 +279,10 @@ function extractContentFromText(text: string, config: any): StoryResponse {
   }
 }
 
-async function processUserInputFallback(input: string, config: any): Promise<StoryResponse> {
-  // Enhanced text processing as fallback
+async function processUserInputFallback(input: string, config: any, _fullContext: string = ''): Promise<StoryResponse> {
   const words = input.toLowerCase().split(' ')
   const sentences = input.split(/[.!?]+/)
   
-  // Enhanced role extraction
   const rolePatterns = [
     /as\s+an?\s+(\w+)/i,
     /as\s+a\s+(\w+)/i,
@@ -244,12 +299,11 @@ async function processUserInputFallback(input: string, config: any): Promise<Sto
     }
   }
   
-  // Enhanced action extraction
   const actionPatterns = [
-    /want\s+to\s+([^.]+)/i,
-    /need\s+to\s+([^.]+)/i,
-    /would\s+like\s+to\s+([^.]+)/i,
-    /can\s+([^.]+)/i
+    /want\s+to\s+([^\.]+)/i,
+    /need\s+to\s+([^\.]+)/i,
+    /would\s+like\s+to\s+([^\.]+)/i,
+    /can\s+([^\.]+)/i
   ]
   
   let action = 'access a feature'
@@ -261,12 +315,11 @@ async function processUserInputFallback(input: string, config: any): Promise<Sto
     }
   }
   
-  // Enhanced benefit extraction
   const benefitPatterns = [
-    /so\s+(?:that\s+)?([^.]+)/i,
-    /because\s+([^.]+)/i,
-    /in\s+order\s+to\s+([^.]+)/i,
-    /to\s+([^.]+)/i
+    /so\s+(?:that\s+)?([^\.]+)/i,
+    /because\s+([^\.]+)/i,
+    /in\s+order\s+to\s+([^\.]+)/i,
+    /to\s+([^\.]+)/i
   ]
   
   let benefit = 'achieve my goals'
@@ -278,13 +331,11 @@ async function processUserInputFallback(input: string, config: any): Promise<Sto
     }
   }
   
-  // Generate formatted story
   const formattedStory = config.userStoryTemplate
     .replace('[role]', role)
     .replace('[feature/functionality]', action)
     .replace('[benefit/value]', benefit)
   
-  // Generate suggestions for improvement
   const suggestions = generateSuggestions(input, role, action, benefit)
   
   return {
@@ -312,5 +363,5 @@ function generateSuggestions(input: string, role: string, action: string, benefi
     suggestions.push('Try to include the benefit or reason using words like "so", "because", or "to"')
   }
   
-  return suggestions.slice(0, 3) // Limit to 3 suggestions
+  return suggestions.slice(0, 3)
 } 
