@@ -27,7 +27,9 @@ export interface SavedStoryRecord {
   }>;
 }
 
-const DATA_DIR = path.join(process.cwd(), '.data');
+// Use writable temp dir on serverless (e.g., Vercel), local .data during dev
+const ROOT_BASE = process.env.VERCEL ? (process.env.TMPDIR || '/tmp') : process.cwd();
+const DATA_DIR = path.join(ROOT_BASE, '.data');
 const DATA_FILE = path.join(DATA_DIR, 'team-stories.json');
 const TEAM_DIR = path.join(DATA_DIR, 'teams');
 
@@ -44,8 +46,8 @@ function ensureDataFileExists(): void {
 }
 
 function readAllStories(): SavedStoryRecord[] {
-  ensureDataFileExists();
   try {
+    ensureDataFileExists();
     const raw = fs.readFileSync(DATA_FILE, 'utf-8');
     const parsed = JSON.parse(raw);
     return Array.isArray(parsed.stories) ? parsed.stories : [];
@@ -55,9 +57,13 @@ function readAllStories(): SavedStoryRecord[] {
 }
 
 function writeAllStories(stories: SavedStoryRecord[]): void {
-  ensureDataFileExists();
-  const payload = { stories } as const;
-  fs.writeFileSync(DATA_FILE, JSON.stringify(payload, null, 2), 'utf-8');
+  try {
+    ensureDataFileExists();
+    const payload = { stories } as const;
+    fs.writeFileSync(DATA_FILE, JSON.stringify(payload, null, 2), 'utf-8');
+  } catch {
+    // ignore write errors in non-writable environments
+  }
 }
 
 export function saveNewStory(params: {
@@ -81,7 +87,7 @@ export function saveNewStory(params: {
   currentStories.push(record);
   writeAllStories(currentStories);
   // Update cached context file
-  updateTeamContextFile(params.teamId);
+  try { updateTeamContextFile(params.teamId); } catch {}
   return record;
 }
 
@@ -108,7 +114,7 @@ export function addTweakToStory(params: {
   currentStories[index] = updated;
   writeAllStories(currentStories);
   // Update cached context file
-  updateTeamContextFile(updated.teamId);
+  try { updateTeamContextFile(updated.teamId); } catch {}
   return updated;
 }
 
@@ -159,14 +165,20 @@ export function generateTeamContextText(teamId: string): string {
 }
 
 export function updateTeamContextFile(teamId: string): string {
-  ensureDataFileExists();
   const context = generateTeamContextText(teamId);
-  const filePath = path.join(TEAM_DIR, `${teamId}-context.txt`);
-  fs.writeFileSync(filePath, context, 'utf-8');
-  return context;
+  try {
+    if (!fs.existsSync(TEAM_DIR)) {
+      fs.mkdirSync(TEAM_DIR, { recursive: true });
+    }
+    const filePath = path.join(TEAM_DIR, `${teamId}-context.txt`);
+    fs.writeFileSync(filePath, context, 'utf-8');
+    return context;
+  } catch {
+    // ignore write errors in non-writable environments
+    return context;
+  }
 }
 
 export function getTeamContextFilePath(teamId: string): string {
-  ensureDataFileExists();
   return path.join(TEAM_DIR, `${teamId}-context.txt`);
 } 
